@@ -1,6 +1,8 @@
 #include "values.h"
 #include <stdio.h>
 #include <limits.h>
+#include <iostream>
+using namespace std;
 
 //Evalúa si la columna ya no puede recibir más valores
 int isColumnFull(int board[ROWS][COLUMS], int col) {
@@ -10,7 +12,7 @@ int isColumnFull(int board[ROWS][COLUMS], int col) {
 //Coloca la ficha de cada jugador en la posición seleccionada
 void makeMove(int board[ROWS][COLUMS], int col, int player) {
     for (int i = ROWS - 1; i >= 0; --i) {
-        if (board[i][col] == 0) {
+        if (board[i][col] == 0 ) {
             board[i][col] = player;
             break;
         }

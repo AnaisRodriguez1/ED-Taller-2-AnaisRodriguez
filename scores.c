@@ -1,6 +1,8 @@
 #include "values.h"
 #include <stdio.h>
 #include <limits.h>
+#include <iostream>
+using namespace std;
 
 //Valida según el jugador que reciba como parámetro
 int isGameOver(int board[ROWS][COLUMS], int player){

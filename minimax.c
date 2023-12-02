@@ -1,6 +1,8 @@
 #include "values.h"
 #include <stdio.h>
 #include <limits.h>
+#include <iostream>
+using namespace std;
 
 //Lógica minimax que tuliza el tablero de juego, nivel de complejidad, rol maximin para el jugador, factores alpha y beta para el PODA
 int minimax(int board[ROWS][COLUMS], int depth, int maximizingPlayer, int alpha, int beta) {

@@ -1,31 +1,38 @@
 #include "values.h"
 #include <stdio.h>
 #include <limits.h>
+#include <iostream>
+using namespace std;
+
 
 //Muesta la cabecera del tablero con una letra por columna
 void printHeader(int COL) {
-printf("\n");
+cout<<"\n";
     char albet[7];
-        for (int ch = 'A'; ch <='G'; ch++) {
-            printf("|%c", ch);
+        for (char ch = 'A'; ch <='G'; ch++) {
+            cout<<"|" << ch;
         }
-                printf("|");
+                cout<<"|";
 }
 
 //Muestra el tablero, la cabecera y se actualiza luego de cada jugada
 int printBoard(int board[ROWS][COLUMS]){
     printHeader(COLUMS);
-    printf("\n");
+    cout<<"\n";
     int i;
     for (i = 0; i < ROWS; ++i) {
         int j;
         for (j = 0; j < COLUMS; ++j) {
-            printf("|%d", board[i][j]);
+            if(board[i][j]==0){
+                cout << "| ";
+            }else{
+                cout<<"|" << board[i][j];
+            }
             if (j + 1 >= COLUMS) {
-                printf("|");
+                cout<<"|";
             }
         }
-        printf("\n");
+        cout<<"\n";
     }
     return 0;
 }
