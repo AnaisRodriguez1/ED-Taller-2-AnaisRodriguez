@@ -5,11 +5,12 @@
 #include <iostream>
 using namespace std;
 
-int game(int option){
+int game(int option, int number){
     int board[ROWS][COLUMS] = {0};
     string value;
     int playerMove;
     int score = 0;
+    int puntaje = 0;
     cout <<"\nEmpieza el juego\n";
     while (!isGameOver(board, 1) && !isGameOver(board, 2)) { //Valida que el juego aún no haya terminado
     
@@ -19,18 +20,19 @@ int game(int option){
             cout <<"\nIngresa tu movimiento (columna del 1 al 7): ";
             cin >> value;
             playerMove = validatePosition(value);//Valida que el dato ingresado por la terminal sea válido para la lógica
-            int depth = 2;//Grado de dificultad para la CPU en minimax en este modo
+            int depth = 0;//Grado de dificultad para la CPU en minimax en este modo
             while (playerMove < 0 || playerMove > COLUMS || isColumnFull(board, playerMove)) {//Valida que la columna no se encuentre llena o sea una columna valida
             cout <<"Movimiento invalido. Ingresa otro movimiento: ";
             cin >> value;
             playerMove = validatePosition(value);//Valida que el dato ingresado por la terminal sea válido para la lógicay
         }
 
-        makeMove(board, playerMove-1, 1);   //Coloca la ficha en el tablero, siendo en este caso un "1"
+        makeMove(board, playerMove, 1);   //Coloca la ficha en el tablero, siendo en este caso un "1"
 
         if (isGameOver(board, 1)) {
             printBoard(board);
             cout <<"\nHas ganado! Juegas denuevo?\n";    //Valida si se cumplen las condiciones para que el jugador gane
+            recordMatch(board, "Games.csv", "Facil", "Usuario",number);// Si el jugador ganó, escribe el estado final del tablero en un archivo csv
             score = 1;
             break;
             }
@@ -42,6 +44,7 @@ int game(int option){
         if (isGameOver(board, 2)) {
             printBoard(board);
             cout <<"\nLa CPU ha ganado! Juegas denuevo?\n";//Valida si se cumplen las condiciones para que la CPU gane
+            recordMatch(board, "Games.csv", "Facil", "CPU",number);// Si el jugador ganó, escribe el estado final del tablero en un archivo csv
             score = 2;
             break;
         }
@@ -58,11 +61,13 @@ int game(int option){
             playerMove = validatePosition(value); //Valida que el dato ingresado por la terminal sea válido para la lógica
         }
 
-        makeMove(board, playerMove-1, 1); //Coloca la ficha en el tablero, siendo en este caso un "1"
+        makeMove(board, playerMove, 1); //Coloca la ficha en el tablero, siendo en este caso un "1"
 
         if (isGameOver(board, 1)) {
             printBoard(board);
             cout <<"\nHas ganado! Juegas denuevo?\n"; //Valida si se cumplen las condiciones para que el jugador gane
+            recordMatch(board, "Games.csv", "Media","Usuario",number);// Si el jugador ganó, escribe el estado final del tablero en un archivo csv
+            score = 1;
         }
 
         int cpu = cpuMove(board,depth);
@@ -72,7 +77,10 @@ int game(int option){
         if (isGameOver(board, 2)) {
             printBoard(board);
             cout <<"\nLa CPU ha ganado! Juegas denuevo?\n"; //Valida si se cumplen las condiciones para que la CPU gane
+            recordMatch(board, "Games.csv", "Media","CPU",number);// Si el jugador ganó, escribe el estado final del tablero en un archivo csv
+            score = 2;
         }
+        //recordMatch(board, "test.csv", "Media"," ");
         }
         else if (option == 3){
             cout <<"\n  Modo Dificil";
@@ -87,11 +95,13 @@ int game(int option){
             playerMove = validatePosition(value); //Valida que el dato ingresado por la terminal sea válido para la lógica
         }
 
-        makeMove(board, playerMove-1, 1); //Coloca la ficha en el tablero, siendo en este caso un "1"
+        makeMove(board, playerMove, 1); //Coloca la ficha en el tablero, siendo en este caso un "1"
 
         if (isGameOver(board, 1)) {
             printBoard(board);
             cout <<"\nHas ganado! Juegas denuevo?\n"; //Valida si se cumplen las condiciones para que el jugador gane
+            recordMatch(board, "Games.csv", "Dificil","Usuario",number);// Si el jugador ganó, escribe el estado final del tablero en un archivo csv
+            score = 1;
         }
 
         int cpu = cpuMove(board,depth);
@@ -101,10 +111,10 @@ int game(int option){
         if (isGameOver(board, 2)) {
             printBoard(board);
             cout <<"\nLa CPU ha ganado! Juegas denuevo?\n"; //Valida si se cumplen las condiciones para que la CPU gane
+            recordMatch(board, "Games.csv", "Dificil","CPU",number);// Si el jugador ganó, escribe el estado final del tablero en un archivo csv
+            score = 2;
         }
         }
-        
     }
-    cout << score;
     return score;
 }

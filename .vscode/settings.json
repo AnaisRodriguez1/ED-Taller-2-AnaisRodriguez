@@ -102,6 +102,7 @@
     "streambuf": "cpp",
     "typeinfo": "cpp",
     "board.c": "cpp",
-    "addons.c": "cpp"
+    "addons.c": "cpp",
+    "fstream": "cpp"
   }
 }

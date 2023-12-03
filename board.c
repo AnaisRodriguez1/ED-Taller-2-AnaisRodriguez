@@ -28,7 +28,7 @@ int printBoard(int board[ROWS][COLUMS]){
             }else{
                 cout<<"|" << board[i][j];
             }
-            if (j + 1 >= COLUMS) {
+            if (j+1>= COLUMS) {
                 cout<<"|";
             }
         }

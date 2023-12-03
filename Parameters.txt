@@ -1,0 +1,3 @@
+Puntaje_Jugador:	1
+Puntaje_CPU:	1
+Partida_Numero:	3

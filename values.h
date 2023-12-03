@@ -5,7 +5,7 @@ using namespace std;
 
 #define ROWS 6
 #define COLUMS 7
-#define INF INT_MAX
+#define INF INT_MAX //El valor máximo y mínimo que puede tomar cada extremo es el infinito, se usa durante el cálculo de movimientos de la CPU
 
 //main.c
 int main();
@@ -13,7 +13,7 @@ int main();
 void printHeader(int COL);
 int printBoard(int board[ROWS][COLUMS]);
 //game.c
-int game(int modo);
+int game(int option, int number);
 //moves.c
 int isColumnFull(int board[ROWS][COLUMS], int col);
 void makeMove(int board[ROWS][COLUMS], int col, int player);
@@ -28,3 +28,7 @@ int evaluatePosition(int board[ROWS][COLUMS], int player);
 int validateOption();
 int displayMenu();
 int validatePosition(const string& value);
+int recordWinner(int winner,int& pointsPlayer,int& pointsCPU);
+void recordMatch(int board[ROWS][COLUMS],const string& fileName,const string& difficulty,const string& winnerofMatch,int numberofMatch);
+int readParameters(const string& fileName, int& pointsPlayer, int& pointsCPU,int& numberofMatch);
+void recordParameters(const string& fileName, int pointsPlayer, int pointsCPU,int numberofMatch);
